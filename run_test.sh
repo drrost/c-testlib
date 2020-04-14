@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PATH_SUT=../../rdruzhchen/$1
-FILES=$(ls $PATH_SUT)
+FILES=$(ls -ct $PATH_SUT)
 
 MAIN_FILE="main.c"
 TESTS_FILE="tests.c"
