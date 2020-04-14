@@ -1,3 +1,11 @@
+//
+//  test_lib.c
+//  c-testlib
+//
+//  Created by Rostyslav Druzhchenko on 14/4/20.
+//  Copyright © 2019 Rostyslav Druzhchenko. All rights reserved.
+//
+
 #include "test_lib.h"
 
 #include <stdio.h>

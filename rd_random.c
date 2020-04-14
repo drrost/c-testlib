@@ -1,3 +1,11 @@
+//
+//  rd_random.c
+//  c-testlib
+//
+//  Created by Rostyslav Druzhchenko on 14/4/20.
+//  Copyright © 2019 Rostyslav Druzhchenko. All rights reserved.
+//
+
 #include <time.h>
 #include <stdlib.h>
 
