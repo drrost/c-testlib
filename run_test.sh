@@ -1,6 +1,12 @@
 #!/bin/bash
 
-PATH_SUT=../../rdruzhchen/$1
+#  c-testlib
+#
+#  Created by Rostyslav Druzhchenko on 15/4/20.
+#  Copyright © 2019 Rostyslav Druzhchenko. All rights reserved.
+#
+
+PATH_SUT=../../xlogin/$1
 FILES=$(ls -ct $PATH_SUT)
 
 MAIN_FILE="main.c"
