@@ -28,6 +28,9 @@ echo "#include <stdlib.h>" >> $MAIN_FILE
 echo "#include <string.h>" >> $MAIN_FILE
 
 echo "" >> $MAIN_FILE
+echo "#include \"../lib/rd_random.h\"" >> $MAIN_FILE
+
+echo "" >> $MAIN_FILE
 echo "#include \"$TESTS_FILE\"" >> $MAIN_FILE
 
 # Handle main function
@@ -80,7 +83,7 @@ echo "
 OUT_NAME=app
 rm -f $OUT_NAME
 
-clang -std=c11 -Wall -Wextra -Werror -Wpedantic ./main.c ../lib/test_lib.c -o $OUT_NAME
+clang -std=c11 -Wall -Wextra -Werror -Wpedantic ./main.c ../lib/test_lib.c ../lib/rd_random.c -o $OUT_NAME
 
 rm $MAIN_FILE $TESTS_FILE
 
