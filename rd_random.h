@@ -12,4 +12,12 @@
 int rd_random_int(int from, int to);
 void rd_random_fill(int *arr, int n, int from, int to);
 
+char rd_random_lower_char();
+char rd_random_upper_char();
+char rd_random_char();
+
+extern int rd_random_str_min;
+extern int rd_random_str_max;
+char *rd_random_str();
+
 #endif // __RD_RANDOM_H__
