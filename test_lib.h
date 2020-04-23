@@ -18,9 +18,15 @@ void test_finalize();
 
 // Asserts
 
-#define ASSERT_NOT_NIL(exp) if ((exp) == 0) { char sss[256]; \
+#define ASSERT_NOT_NULL(exp) if ((exp) == 0) { char sss[256]; \
     sprintf(sss, "In file \"%s: %d\", function %s(): | Passed value is nil | EXP: Not nil, ACR: 0x%x\n", \
     __FILE__, __LINE__, __func__, (unsigned int)exp); \
+    test_print_fail(sss); }
+
+#define ASSERT_NULL(act) if ((act) != 0) { char sss[256]; \
+    sprintf(sss, "In file \"%s: %d\", function %s(): | Passed value is not " \
+    "NULL | EXP: NULL, ACR: 0x%x\n", \
+    __FILE__, __LINE__, __func__, (unsigned int)act); \
     test_print_fail(sss); }
 
 #define ASSERT_TRUE(exp) if ((exp) == 0) { char sss[256]; \
@@ -29,10 +35,8 @@ void test_finalize();
     test_print_fail(sss); }
 
 #define ASSERT_EQUALS(exp, act) if (exp != act) { char sss[256]; \
-    sprintf(sss, "In file \"%s: %d\", function %s(): EXP: '%d', ACR: '%d'\n", \
-    __FILE__, __LINE__, __func__, exp, act); \
+    sprintf(sss, "In file \"%s: %d\", function %s(): EXP: '%ld', ACR: '%ld'\n", \
+    __FILE__, __LINE__, __func__, (unsigned long)exp, (unsigned long)act); \
     test_print_fail(sss); }
-
-
 
 #endif // __TEST_LIB_H__
