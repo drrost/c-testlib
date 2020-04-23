@@ -89,4 +89,8 @@ rm $MAIN_FILE $TESTS_FILE
 
 ./$OUT_NAME "${@:3}"
 
+# Detect memory leaks
+echo leaks
+leaks -atExit -- ./$OUT_NAME "${@:3}" | grep LEAK:
+
 rm $OUT_NAME
