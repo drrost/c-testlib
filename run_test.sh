@@ -66,7 +66,7 @@ void tests_run_all(void) {
 
 for file in $TEST_FILES
 do
-  TEST_FUNCTIONS=$(grep "void test_" ./test_00.c | awk '{print $2}')
+  TEST_FUNCTIONS=$(grep "void test_" $file | awk '{print $2}')
   for func in $TEST_FUNCTIONS
   do
     echo "    $func;" >> $TESTS_FILE
