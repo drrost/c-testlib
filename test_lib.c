@@ -3,7 +3,7 @@
 //  c-testlib
 //
 //  Created by Rostyslav Druzhchenko on 14/4/20.
-//  Copyright © 2019 Rostyslav Druzhchenko. All rights reserved.
+//  Copyright © 2020 Rostyslav Druzhchenko. All rights reserved.
 //
 
 #include "test_lib.h"
