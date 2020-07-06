@@ -14,19 +14,12 @@ LIB_H_PATH=$2
 
 PATH_SUT=$3
 
-FILES=$(ls $PATH_SUT/test_*)
-
 MAIN_FILE="main.c"
 TESTS_FILE="tests.c"
 
 rm -f $MAIN_FILE
 
 # Generate 'main.c' file
-
-#for file in $FILES
-#do
-#  echo "#include \"$file\"" >> $MAIN_FILE
-#done
 
 echo "" >> $MAIN_FILE
 echo "#include <unistd.h>" >> $MAIN_FILE
@@ -100,4 +93,4 @@ leaks -atExit -- ./$OUT_NAME "${@:3}" > leaks
 cat leaks | grep LEAK:
 rm -f leaks
 
- rm $OUT_NAME
+rm $OUT_NAME
