@@ -44,7 +44,7 @@ int main(void) {
 rm -f $TESTS_FILE
 
 echo "int is_failed = 0;" >> $TESTS_FILE
-echo "char *tXX = \"$1\";" >> $TESTS_FILE
+echo "char *tXX = \"$(basename $PATH_SUT)\";" >> $TESTS_FILE
 echo "" >> $TESTS_FILE
 echo "#include \"../../lib/test_lib.h\"" >> $TESTS_FILE
 echo "" >> $TESTS_FILE
