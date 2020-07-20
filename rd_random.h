@@ -19,5 +19,6 @@ char rd_random_char();
 extern int rd_random_str_min;
 extern int rd_random_str_max;
 char *rd_random_str();
+char *rd_random_strn(int length);
 
 #endif // __RD_RANDOM_H__

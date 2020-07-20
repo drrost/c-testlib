@@ -39,6 +39,11 @@ void test_finalize();
     __FILE__, __LINE__, __func__, (unsigned long)exp, (unsigned long)act); \
     test_print_fail(sss); }
 
+#define ASSERT_EQUALS_STR(exp, act) if (strcmp(exp, act) != 0) { char sss[256]; \
+    sprintf(sss, "In file \"%s: %d\", function %s(): EXP: '%s', ACR: '%s'\n", \
+    __FILE__, __LINE__, __func__, (char *)exp, (char *)act); \
+    test_print_fail(sss); }
+
 // Intercept STDOUT
 
 #define INTERCEPT_STDOUT int stdout_bk = dup(fileno(stdout)); \
@@ -58,5 +63,9 @@ for (int i = 0; s[i]; i++) { \
         ASSERT_TRUE(0); \
     } \
 }
+
+// Helpers
+
+#define print(s) printf("%s\n", s)
 
 #endif // __TEST_LIB_H__

@@ -6,7 +6,7 @@
 #  Copyright © 2020 Rostyslav Druzhchenko. All rights reserved.
 #
 
-PATH_SUT=../../xlogin/$1
+PATH_SUT=../../src/$1
 FILES=$(ls -ct $PATH_SUT)
 
 MAIN_FILE="main.c"
@@ -90,7 +90,8 @@ rm $MAIN_FILE $TESTS_FILE
 ./$OUT_NAME "${@:3}"
 
 # Detect memory leaks
-echo leaks
-leaks -atExit -- ./$OUT_NAME "${@:3}" | grep LEAK:
+leaks -atExit -- ./$OUT_NAME "${@:3}" > leaks
+cat leaks | grep LEAK:
+rm -f leaks
 
-rm $OUT_NAME
+# rm $OUT_NAME

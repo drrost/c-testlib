@@ -44,12 +44,16 @@ char rd_random_char() {
     }
 }
 
-char *rd_random_str() {
-    int length = rd_random_int(rd_random_str_min, rd_random_str_max);
+char *rd_random_strn(int length) {
     char *str = (char *) malloc(sizeof(char) * (length + 1));
     for (int i = 0; i < length; i++) {
         str[i] = rd_random_char();
     }
     str[length] = '\0';
     return str;
+}
+
+char *rd_random_str() {
+    int length = rd_random_int(rd_random_str_min, rd_random_str_max);
+    return rd_random_strn(length);
 }
