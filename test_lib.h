@@ -19,33 +19,51 @@ void test_finalize();
 
 // Asserts
 
-#define ASSERT_NOT_NULL(exp) if ((exp) == 0) { char sss[256]; \
-    sprintf(sss, "In file \"%s: %d\", function %s(): | Passed value is nil | EXP: Not nil, ACR: 0x%x\n", \
-    __FILE__, __LINE__, __func__, (unsigned int)exp); \
-    test_print_fail(sss); }
+static const int BUFF_SIZE = 4096;
 
-#define ASSERT_NULL(act) if ((act) != 0) { char sss[256]; \
-    sprintf(sss, "In file \"%s: %d\", function %s(): | Passed value is not " \
+#define ASSERT_NOT_NULL(exp) if ((exp) == 0) { \
+    char *s = (char *) malloc(BUFF_SIZE); \
+    sprintf(s, "In file \"%s: %d\", function %s(): |" \
+    " Passed value is nil | EXP: Not nil, ACR: 0x%x\n", \
+    __FILE__, __LINE__, __func__, (unsigned int)exp); \
+    test_print_fail(s); \
+    free(s); \
+}
+
+#define ASSERT_NULL(act) if ((act) != 0) { \
+    char *s = (char *) malloc(BUFF_SIZE); \
+    sprintf(s, "In file \"%s: %d\", function %s(): | Passed value is not " \
     "NULL | EXP: NULL, ACR: 0x%x\n", \
     __FILE__, __LINE__, __func__, (unsigned int)act); \
-    test_print_fail(sss); }
+    test_print_fail(s); \
+    free(s); \
+}
 
-#define ASSERT_TRUE(exp) if ((exp) == 0) { char sss[256]; \
-    sprintf(sss, "In file \"%s: %d\", function %s(): EXP: TRUE, ACR: FALSE\n", \
+#define ASSERT_TRUE(exp) if ((exp) == 0) { \
+    char *s = (char *) malloc(BUFF_SIZE); \
+    sprintf(s, "In file \"%s: %d\", function %s(): EXP: TRUE, ACR: FALSE\n", \
     __FILE__, __LINE__, __func__); \
-    test_print_fail(sss); }
+    test_print_fail(s); \
+    free(s); \
+}
 
-#define ASSERT_EQUALS(exp, act) if (exp != act) { char sss[256]; \
-    sprintf(sss, "     In file \"%s: %d\", function %s():\n" \
+#define ASSERT_EQUALS(exp, act) if (exp != act) { \
+    char *s = (char *) malloc(BUFF_SIZE); \
+    sprintf(s, "     In file \"%s: %d\", function %s():\n" \
     "     EXP: '%ld'\n     ACR: '%ld'\n", \
     __FILE__, __LINE__, __func__, (unsigned long)exp, (unsigned long)act); \
-    test_print_fail(sss); }
+    test_print_fail(s); \
+    free(s); \
+}
 
-#define ASSERT_EQUALS_STR(exp, act) if (strcmp(exp, act) != 0) { char sss[256]; \
-    sprintf(sss, "     In file \"%s: %d\", function %s():\n" \
+#define ASSERT_EQUALS_STR(exp, act) if (strcmp(exp, act) != 0) { \
+    char *s = (char *) malloc(BUFF_SIZE); \
+    sprintf(s, "     In file \"%s: %d\", function %s():\n" \
     "     EXP: '%s'\n     ACR: '%s'\n", \
     __FILE__, __LINE__, __func__, (char *)exp, (char *)act); \
-    test_print_fail(sss); }
+    test_print_fail(s); \
+    free(s); \
+}
 
 // Intercept STDOUT
 
