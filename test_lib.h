@@ -11,6 +11,7 @@
 
 extern int is_failed;
 extern char *tXX;
+extern char *test_case_name;
 
 void test_print_fail(const char *message);
 void test_print_ok();
@@ -35,12 +36,14 @@ void test_finalize();
     test_print_fail(sss); }
 
 #define ASSERT_EQUALS(exp, act) if (exp != act) { char sss[256]; \
-    sprintf(sss, "In file \"%s: %d\", function %s(): EXP: '%ld', ACR: '%ld'\n", \
+    sprintf(sss, "     In file \"%s: %d\", function %s():\n" \
+    "     EXP: '%ld'\n     ACR: '%ld'\n", \
     __FILE__, __LINE__, __func__, (unsigned long)exp, (unsigned long)act); \
     test_print_fail(sss); }
 
 #define ASSERT_EQUALS_STR(exp, act) if (strcmp(exp, act) != 0) { char sss[256]; \
-    sprintf(sss, "In file \"%s: %d\", function %s(): EXP: '%s', ACR: '%s'\n", \
+    sprintf(sss, "     In file \"%s: %d\", function %s():\n" \
+    "     EXP: '%s'\n     ACR: '%s'\n", \
     __FILE__, __LINE__, __func__, (char *)exp, (char *)act); \
     test_print_fail(sss); }
 

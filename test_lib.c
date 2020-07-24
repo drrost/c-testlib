@@ -14,7 +14,8 @@ void test_print_fail(const char *message) {
     printf("%s | ", tXX);
     printf("\033[0;31m");
     printf("%s", "FAILED: ");
-    printf("\033[0m");
+    printf("\033[0m |");
+    printf("\033[1m %s\033[0m\n", test_case_name);
     printf("%s", message);
 
     is_failed = 1;
@@ -23,8 +24,8 @@ void test_print_fail(const char *message) {
 void test_print_ok() {
     printf("%s | ", tXX);
     printf("\033[0;32m");
-    printf("%s", "OK\n");
-    printf("\033[0m");
+    printf("%s", "OK\033[0m");
+    printf(" |\033[1m %s\033[0m\n", test_case_name);
 }
 
 void test_finalize() {
