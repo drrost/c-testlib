@@ -41,7 +41,8 @@ static const int BUFF_SIZE = 4096;
 
 #define ASSERT_TRUE(exp) if ((exp) == 0) { \
     char *s = (char *) malloc(BUFF_SIZE); \
-    sprintf(s, "In file \"%s: %d\", function %s(): EXP: TRUE, ACR: FALSE\n", \
+    sprintf(s, "     In file \"%s: %d\", function %s():\n" \
+    "     EXP: TRUE\n     ACR: FALSE\n", \
     __FILE__, __LINE__, __func__); \
     test_print_fail(s); \
     free(s); \
