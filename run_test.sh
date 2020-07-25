@@ -83,7 +83,10 @@ echo "
 OUT_NAME=app
 rm -f $OUT_NAME
 
-clang -std=c11 -Wall -Wextra -Werror -Wpedantic ./main.c ../lib/test_lib.c ../lib/rd_random.c -o $OUT_NAME
+clang -std=c11 -Wall -Wextra -Werror -Wpedantic ./main.c \
+    ../lib/test_lib.c \
+    ../lib/rd_trycatch.c \
+    ../lib/rd_random.c -o $OUT_NAME
 
 rm $MAIN_FILE $TESTS_FILE
 

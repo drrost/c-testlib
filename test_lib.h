@@ -9,6 +9,8 @@
 #ifndef __TEST_LIB_H__
 #define __TEST_LIB_H__
 
+#include "rd_trycatch.h"
+
 extern int is_failed;
 extern char *tXX;
 extern char *test_case_name;
