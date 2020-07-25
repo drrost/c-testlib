@@ -73,9 +73,6 @@ extern char STDOUT_BUFF[101];
 void intercept_stdout();
 void restore_stdout();
 
-#define INTERCEPT_STDOUT intercept_stdout();
-#define RESTORE_STDOUT restore_stdout();
-
 #define ASSERT_STDOUT_EQUALS(s) \
 for (int i = 0; s[i]; i++) { \
     if (s[i] != STDOUT_BUFF[i]) { \
