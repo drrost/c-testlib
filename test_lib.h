@@ -68,20 +68,17 @@ static const int BUFF_SIZE = 4096;
 
 // Intercept STDOUT
 
-#define INTERCEPT_STDOUT int stdout_bk = dup(fileno(stdout)); \
-    int pipefd[2];\
-    pipe(pipefd); \
-    dup2(pipefd[1], fileno(stdout));
+extern char STDOUT_BUFF[101];
 
-#define RESTORE_STDOUT fflush(stdout); \
-    close(pipefd[1]); \
-    dup2(stdout_bk, fileno(stdout)); \
-    char buf[101]; \
-    read(pipefd[0], buf, 100);
+void intercept_stdout();
+void restore_stdout();
+
+#define INTERCEPT_STDOUT intercept_stdout();
+#define RESTORE_STDOUT restore_stdout();
 
 #define ASSERT_STDOUT_EQUALS(s) \
 for (int i = 0; s[i]; i++) { \
-    if (s[i] != buf[i]) { \
+    if (s[i] != STDOUT_BUFF[i]) { \
         ASSERT_TRUE(0); \
     } \
 }

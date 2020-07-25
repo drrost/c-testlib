@@ -8,7 +8,14 @@
 
 #include "test_lib.h"
 
+#include <unistd.h>
 #include <stdio.h>
+
+int stdout_bk;
+int pipefd[2];
+char STDOUT_BUFF[101];
+
+// Prints
 
 void test_print_fail(const char *message) {
     printf("%s | ", tXX);
@@ -32,4 +39,19 @@ void test_finalize() {
     if (!is_failed) {
         test_print_ok();
     }
+}
+
+// Itercept stdout
+
+void intercept_stdout() {
+    stdout_bk = dup(fileno(stdout));
+    pipe(pipefd);
+    dup2(pipefd[1], fileno(stdout));
+}
+
+void restore_stdout() {
+    fflush(stdout);
+    close(pipefd[1]);
+    dup2(stdout_bk, fileno(stdout));
+    read(pipefd[0], STDOUT_BUFF, 100);
 }
