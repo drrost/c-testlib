@@ -65,7 +65,10 @@ do
   TEST_FUNCTIONS=$(grep "void test_" $file | awk '{print $2}')
   for func in $TEST_FUNCTIONS
   do
-    echo "    $func;" >> $TESTS_FILE
+    echo "    TRY" >> $TESTS_FILE
+    echo "        $func;" >> $TESTS_FILE
+    echo "    CATCH(\"$func\");" >> $TESTS_FILE
+    echo "" >> $TESTS_FILE
   done
 done
 

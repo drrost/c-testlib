@@ -13,7 +13,7 @@ extern sigjmp_buf point;
 
 void handler(int sig, siginfo_t *siginfo, void *p);
 
-#define TRY \
+#define TRY {\
     struct sigaction sa; \
     memset(&sa, 0, sizeof(struct sigaction)); \
     sigemptyset(&sa.sa_mask); \
@@ -24,12 +24,12 @@ void handler(int sig, siginfo_t *siginfo, void *p);
     sigaction(SIGSEGV, &sa, NULL); \
     if (setjmp(point) == 0) { \
 
-#define CATCH \
+#define CATCH(f_name) \
     } else { \
     restore_stdout(); \
     char *s = (char *) malloc(1024); \
-    sprintf(s, "     Segmentation fault: \"\033[1m%s()\033[0m\"\n", __func__); \
+    sprintf(s, "     Segmentation fault: \"\033[1m%s\033[0m\"\n", f_name); \
     test_print_fail(s); \
     free(s); \
-    return; \
+} \
 }
