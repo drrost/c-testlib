@@ -39,7 +39,8 @@ char rd_random_upper_char() {
 char rd_random_char() {
     if (rd_random_int(0, 1) % 2) {
         return rd_random_lower_char();
-    } else {
+    }
+    else {
         return rd_random_upper_char();
     }
 }
