@@ -14,7 +14,7 @@ ASSERT_EQUAL() {
   if [ "$1" != "$2" ]
   then
     TEST_FAILED=1
-    echo -e "\033[31mFALIED\033[0m: in \"$TEST_FILE:$3\": " \
+    echo -e "\033[31mFAILED\033[0m: in \"$TEST_FILE:$3\": " \
      "Values are not equal. \n  EXP: \"$1\", \n  ACR: \"$2\""
   fi
 }
