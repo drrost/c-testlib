@@ -25,3 +25,9 @@ PRINT_OK() {
     echo -e "$TASK_NAME | \033[32mOK\033[0m"
   fi
 }
+
+function run_leaks_check() {
+  leaks -atExit -- ./$1 $2 "${@:3}" 2> /dev/null > leaks
+  cat leaks | grep LEAK:
+  rm -f leaks
+}
