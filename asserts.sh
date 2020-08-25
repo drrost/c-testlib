@@ -11,11 +11,15 @@ TEST_FILE=$(basename $0)
 
 # FUNCTIONS
 ASSERT_EQUAL() {
-  if [ "$1" != "$2" ]
-  then
+  # $1 - expected text.
+  # $2 - actual result text.
+  # $3 - if "-h" passed - hides output.
+  if [ "$1" != "$2" ]; then
     TEST_FAILED=1
-    echo -e "\033[31mFAILED\033[0m: in \"$TEST_FILE:$3\": " \
-     "Values are not equal. \n  EXP: \"$1\", \n  ACR: \"$2\""
+    if [ "$3" != "-h" ]; then
+      echo -e "\033[31mFAILED\033[0m: in \"$TEST_FILE:$3\": " \
+        "Values are not equal. \n  EXP: \"$1\", \n  ACR: \"$2\""
+    fi
   fi
 }
 
